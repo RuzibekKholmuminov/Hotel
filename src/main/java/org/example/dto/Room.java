@@ -14,6 +14,26 @@ public class Room {
     private Integer floor;
     @Column(name = "RoomType")
     private String RoomType;
+    @Column(name = "price")
+    private Integer price;
+    @Column(name = "area")
+    private Integer area;
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public Integer getArea() {
+        return area;
+    }
+
+    public void setArea(Integer area) {
+        this.area = area;
+    }
 
     public Integer getId() {
         return id;
@@ -45,5 +65,17 @@ public class Room {
 
     public void setRoomType(String roomType) {
         RoomType = roomType;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", RoomNumber=" + RoomNumber +
+                ", floor=" + floor +
+                ", RoomType='" + RoomType + '\'' +
+                ", price=" + price +
+                ", area=" + area +
+                '}';
     }
 }

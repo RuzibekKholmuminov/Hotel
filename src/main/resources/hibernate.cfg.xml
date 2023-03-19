@@ -15,7 +15,7 @@
         <mapping class="org.example.dto.ClearedRoom"/>
         <mapping class="org.example.dto.Complain"/>
         <mapping class="org.example.dto.Employee"/>
-        <mapping class="org.example.dto.Guest"/>
+        <mapping class="org.example.dto.Guests"/>
         <mapping class="org.example.dto.OutCome"/>
         <mapping class="org.example.dto.Room"/>
     </session-factory>

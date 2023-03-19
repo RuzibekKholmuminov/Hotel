@@ -9,8 +9,8 @@ public class Complain {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
-    @Column(name = "guest_id")
-    private Guest guest_id;
+    @JoinColumn(name = "guest_id")
+    private Guests guest_1_id;
     @Column(name = "status")
     private String status;
 
@@ -22,12 +22,12 @@ public class Complain {
         this.id = id;
     }
 
-    public Guest getGuest_id() {
-        return guest_id;
+    public Guests getGuest_id() {
+        return guest_1_id;
     }
 
-    public void setGuest_id(Guest guest_id) {
-        this.guest_id = guest_id;
+    public void setGuest_id(Guests guest_1_id) {
+        this.guest_1_id = guest_1_id;
     }
 
     public String getStatus() {

@@ -11,12 +11,12 @@ public class ClearedRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
-    @Column(name = "employee_id")
+    @JoinColumn(name = "employee_id")
     private Employee employee_id;
     @Column(name = "time")
     private LocalDateTime time;
     @ManyToOne
-    @Column(name = "room_id")
+    @JoinColumn(name = "room_id")
     private Room room_id;
 
     public Integer getId() {

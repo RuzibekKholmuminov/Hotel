@@ -3,12 +3,12 @@ package org.example.dto;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "guest")
-public class Guest {
+@Table(name = "guests")
+public class Guests {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "name;")
+    @Column(name = "name")
     private String name;
     @Column(name = "surname")
     private String surname;

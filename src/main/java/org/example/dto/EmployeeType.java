@@ -9,7 +9,7 @@ public class EmployeeType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "employee_id")
+    @JoinColumn(name = "employee_id")
     private Employee employee_id;
     private String type;
 
