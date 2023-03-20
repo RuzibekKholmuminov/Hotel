@@ -1,6 +1,8 @@
 package org.example.repository;
 
 import org.example.dto.Convenient;
+import org.example.dto.Employee;
+import org.example.dto.EmployeeType;
 import org.example.dto.Room;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -131,5 +133,64 @@ public class RoomRepository {
         session.close();
         factory.close();
         return 1;
+    }
+
+    public int addEmployee(Employee employee) {
+        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(employee);
+        transaction.commit();
+
+        session.close();
+        factory.close();
+        return 1;
+    }
+
+    public List<Employee> employeeList() {
+        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        List<Employee> convenientList = session.createQuery("from Employee ", Employee.class).getResultList();
+        transaction.commit();
+
+        session.close();
+        factory.close();
+        return convenientList;
+    }
+
+    public int deleteEmployee(Integer id) {
+        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.createQuery("delete from  Employee where id = " + id + "", Employee.class).getResultList();
+        transaction.commit();
+
+        session.close();
+        factory.close();
+        return 1;
+    }
+
+    public void addEmployeeType(EmployeeType employeeType) {
+        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(employeeType);
+        transaction.commit();
+
+        session.close();
+        factory.close();
     }
 }

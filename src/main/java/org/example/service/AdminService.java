@@ -1,6 +1,8 @@
 package org.example.service;
 
 import org.example.dto.Convenient;
+import org.example.dto.Employee;
+import org.example.dto.EmployeeType;
 import org.example.dto.Room;
 import org.example.repository.RoomRepository;
 
@@ -62,5 +64,27 @@ public class AdminService {
         if(i == 1){
             System.out.print("DELETE SUCCESSFULLY");
         }
+    }
+
+    public void addEmployee(Employee employee) {
+        int i = repository.addEmployee(employee);
+        if(i == 1){
+            System.out.print("ADDED SUCCESSFULLY");
+        }
+    }
+
+    public void employeeList() {
+        List<Employee> employeeList = repository.employeeList();
+        for (Employee employee : employeeList) {
+            System.out.println(employee);
+        }
+    }
+
+    public void deleteEmployee(Integer id) {
+        repository.deleteEmployee(id);
+    }
+
+    public void addEmployeeType(EmployeeType employeeType) {
+        repository.addEmployeeType(employeeType);
     }
 }

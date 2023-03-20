@@ -1,10 +1,13 @@
 package org.example.controller.Admin;
 
 import org.example.dto.Convenient;
+import org.example.dto.Employee;
+import org.example.dto.EmployeeType;
 import org.example.dto.Room;
 import org.example.service.AdminService;
 import org.example.util.ScannerUtil;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class AdminController {
@@ -17,10 +20,68 @@ public class AdminController {
             switch (action) {
                 case 1 -> room();
                 case 2 -> convenient();
+                case 3 -> employee();
                 case 0 -> game = false;
                 default -> System.out.println("Mazgi nima bu");
             }
         }
+    }
+
+    private void employee() {
+        boolean game = true;
+        while (game) {
+            convenientMenu();
+            int action = ScannerUtil.getAction();
+            switch (action) {
+                case 1 -> addEmployee();
+                case 2 -> employeeList();
+                case 3 -> deleteEmployee();
+                case 0 -> game = false;
+                default -> System.out.println("Mazgi nima bu");
+            }
+        }
+    }
+
+    private void deleteEmployee() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter Employee Id: ");
+        Integer id = scanner.nextInt();
+        adminService.deleteEmployee(id);
+    }
+
+    private void employeeList() {
+        adminService.employeeList();
+    }
+
+    private void addEmployee() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter Name: ");
+        String name = scanner.next();
+        System.out.print("Enter Surname: ");
+        String surname = scanner.next();
+        System.out.print("Enter Phone: ");
+        String phone = scanner.next();
+        System.out.print("Enter password: ");
+        String psw = scanner.next();
+        System.out.print("Enter Status: ");
+        String status = scanner.next();
+        System.out.print("Enter type: ");
+        String type = scanner.next();
+
+        Employee employee = new Employee();
+        employee.setName(name);
+        employee.setSurname(surname);
+        employee.setPhone(phone);
+        employee.setPsw(psw);
+        employee.setDate(LocalDateTime.now());
+        employee.setStatus(status);
+        employee.setType(type);
+
+        EmployeeType employeeType = new EmployeeType();
+        employeeType.setType(type);
+
+        adminService.addEmployee(employee);
+        adminService.addEmployeeType(employeeType);
     }
 
     private void convenient() {
