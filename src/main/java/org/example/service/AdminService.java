@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.dto.Convenient;
 import org.example.dto.Room;
 import org.example.repository.RoomRepository;
 
@@ -38,6 +39,28 @@ public class AdminService {
         Room room = repository.find(id);
         if (room != null){
             System.out.println(room);
+        }
+    }
+
+    public void AddConvenient(Convenient convenient) {
+        int i = repository.addConvenient(convenient);
+        if (i == 1){
+            System.out.print("CONVENIENT ADDED");
+        }
+    }
+
+    public void convenientList() {
+        List<Convenient> convenient = repository.convenientList();
+        System.out.print("       ** CONVENIENT LIST **");
+        for (Convenient convenient1 : convenient) {
+            System.out.println(convenient1);
+        }
+    }
+
+    public void deleteConvenient(Integer id) {
+        int i = repository.deleteConvenient(id);
+        if(i == 1){
+            System.out.print("DELETE SUCCESSFULLY");
         }
     }
 }

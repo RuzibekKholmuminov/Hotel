@@ -1,5 +1,6 @@
 package org.example.repository;
 
+import org.example.dto.Convenient;
 import org.example.dto.Room;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -85,5 +86,50 @@ public class RoomRepository {
         session.close();
         factory.close();
         return roomList;
+    }
+
+    public int addConvenient(Convenient convenient) {
+        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(convenient);
+        transaction.commit();
+
+        session.close();
+        factory.close();
+        return 1;
+    }
+
+    public List<Convenient> convenientList() {
+        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        List<Convenient> convenientList = session.createQuery("from Convenient ", Convenient.class).getResultList();
+        transaction.commit();
+
+        session.close();
+        factory.close();
+        return convenientList;
+    }
+
+    public int deleteConvenient(Integer id) {
+        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.createQuery("delete from  Convenient where id = " + id + "", Convenient.class).getResultList();
+        transaction.commit();
+
+        session.close();
+        factory.close();
+        return 1;
     }
 }

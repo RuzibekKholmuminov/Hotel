@@ -1,5 +1,6 @@
 package org.example.controller.Admin;
 
+import org.example.dto.Convenient;
 import org.example.dto.Room;
 import org.example.service.AdminService;
 import org.example.util.ScannerUtil;
@@ -15,10 +16,55 @@ public class AdminController {
             int action = ScannerUtil.getAction();
             switch (action) {
                 case 1 -> room();
+                case 2 -> convenient();
                 case 0 -> game = false;
                 default -> System.out.println("Mazgi nima bu");
             }
         }
+    }
+
+    private void convenient() {
+        boolean game = true;
+        while (game) {
+            convenientMenu();
+            int action = ScannerUtil.getAction();
+            switch (action) {
+                case 1 -> addConvenient();
+                case 2 -> convenientList();
+                case 3 -> deleteConvenient();
+                case 0 -> game = false;
+                default -> System.out.println("Mazgi nima bu");
+            }
+        }
+    }
+
+    private void deleteConvenient() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter Id: ");
+        Integer id = scanner.nextInt();
+        adminService.deleteConvenient(id);
+    }
+
+    private void convenientList() {
+        adminService.convenientList();
+    }
+
+    private void addConvenient() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter name: ");
+        String name = scanner.next();
+        Convenient convenient = new Convenient();
+        convenient.setName(name);
+        adminService.AddConvenient(convenient);
+    }
+
+    private void convenientMenu() {
+        System.out.println("""
+                        ** CONVENIENT MENU **
+                1.Add
+                2.List
+                3.Delete
+                """);
     }
 
     private void room() {
