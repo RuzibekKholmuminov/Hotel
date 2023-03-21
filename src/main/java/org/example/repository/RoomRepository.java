@@ -1,9 +1,6 @@
 package org.example.repository;
 
-import org.example.dto.Convenient;
-import org.example.dto.Employee;
-import org.example.dto.EmployeeType;
-import org.example.dto.Room;
+import org.example.dto.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -192,5 +189,34 @@ public class RoomRepository {
 
         session.close();
         factory.close();
+    }
+
+    public void addGuest(Guests guests) {
+        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(guests);
+        transaction.commit();
+
+        session.close();
+        factory.close();
+    }
+
+    public List<Guests> guestList() {
+        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        List<Guests> convenientList = session.createQuery("from Guests ", Guests.class).getResultList();
+        transaction.commit();
+
+        session.close();
+        factory.close();
+        return convenientList;
     }
 }

@@ -1,6 +1,7 @@
 package org.example.dto;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "guests")
@@ -14,6 +15,46 @@ public class Guests {
     private String surname;
     @Column(name = "phone", length = 13)
     private String phone;
+    @Column(name = "passportNumber")
+    private String pNumber;
+    @Column(name = "pGivenDate")
+    private LocalDateTime pGivenDate;
+    @Column(name = "pExpiredDate")
+    private LocalDateTime pExpiredDate;
+    @Column(name = "pGivenBy")
+    private String pGivenBy;
+
+    public String getpNumber() {
+        return pNumber;
+    }
+
+    public void setpNumber(String pNumber) {
+        this.pNumber = pNumber;
+    }
+
+    public LocalDateTime getpGivenDate() {
+        return pGivenDate;
+    }
+
+    public void setpGivenDate(LocalDateTime pGivenDate) {
+        this.pGivenDate = pGivenDate;
+    }
+
+    public LocalDateTime getpExpiredDate() {
+        return pExpiredDate;
+    }
+
+    public void setpExpiredDate(LocalDateTime pExpiredDate) {
+        this.pExpiredDate = pExpiredDate;
+    }
+
+    public String getpGivenBy() {
+        return pGivenBy;
+    }
+
+    public void setpGivenBy(String pGivenBy) {
+        this.pGivenBy = pGivenBy;
+    }
 
     public Integer getId() {
         return id;

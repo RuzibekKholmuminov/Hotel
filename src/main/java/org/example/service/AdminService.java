@@ -1,9 +1,6 @@
 package org.example.service;
 
-import org.example.dto.Convenient;
-import org.example.dto.Employee;
-import org.example.dto.EmployeeType;
-import org.example.dto.Room;
+import org.example.dto.*;
 import org.example.repository.RoomRepository;
 
 import java.util.List;
@@ -86,5 +83,17 @@ public class AdminService {
 
     public void addEmployeeType(EmployeeType employeeType) {
         repository.addEmployeeType(employeeType);
+    }
+
+    public void addGuest(Guests guests) {
+        repository.addGuest(guests);
+        System.out.println("ADDED SUCCESSFULLY");
+    }
+
+    public void guestList() {
+        List<Guests> guests = repository.guestList();
+        for (Guests guests1 : guests) {
+            System.out.println(guests1);
+        }
     }
 }

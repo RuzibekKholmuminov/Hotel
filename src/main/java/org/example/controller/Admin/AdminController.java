@@ -1,9 +1,6 @@
 package org.example.controller.Admin;
 
-import org.example.dto.Convenient;
-import org.example.dto.Employee;
-import org.example.dto.EmployeeType;
-import org.example.dto.Room;
+import org.example.dto.*;
 import org.example.service.AdminService;
 import org.example.util.ScannerUtil;
 
@@ -11,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class AdminController {
-    private AdminService adminService = new AdminService();
+    private final AdminService adminService = new AdminService();
     public void start() {
         boolean game = true;
         while (game) {
@@ -21,10 +18,66 @@ public class AdminController {
                 case 1 -> room();
                 case 2 -> convenient();
                 case 3 -> employee();
+                case 4 -> guest();
                 case 0 -> game = false;
                 default -> System.out.println("Mazgi nima bu");
             }
         }
+    }
+
+    private void guest() {
+        boolean game = true;
+        while (game) {
+            guestMenu();
+            int action = ScannerUtil.getAction();
+            switch (action) {
+                case 1 -> addGuest();
+                case 2 -> guestList();
+                case 0 -> game = false;
+                default -> System.out.println("Mazgi nima bu");
+            }
+        }
+    }
+
+    private void guestList() {
+        adminService.guestList();
+    }
+
+    private void addGuest() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter Name: ");
+        String name = scanner.next();
+        System.out.print("Enter Surname: ");
+        String surname = scanner.next();
+        System.out.print("Enter Phone: ");
+        String phone = scanner.next();
+        System.out.print("Enter Passport Number: ");
+        String pNumber = scanner.next();
+        System.out.print("Enter Passport given date: ");
+        LocalDateTime pGivenDate = LocalDateTime.parse(scanner.next());
+        System.out.print("Enter Passport expired date: ");
+        LocalDateTime pExpiredDate = LocalDateTime.parse(scanner.next());
+        System.out.print("Enter Passport given by: ");
+        String givenBy = scanner.next();
+
+        Guests guests = new Guests();
+        guests.setName(name);
+        guests.setSurname(surname);
+        guests.setPhone(phone);
+        guests.setpNumber(pNumber);
+        guests.setpGivenDate(pGivenDate);
+        guests.setpExpiredDate(pExpiredDate);
+        guests.setpGivenBy(givenBy);
+
+        adminService.addGuest(guests);
+    }
+
+    private void guestMenu() {
+        System.out.println("""
+                        ** GUEST MENU **
+                1.Add Guest
+                2.List
+                """);
     }
 
     private void employee() {
@@ -226,13 +279,12 @@ public class AdminController {
                         ** ADMIN MENU **
                 1.Room
                 2.Convenient
-                3.Employee Type
-                4.Employee
-                5.Guest
-                6.Booking
-                7.OutCome
-                8.Tozalangan
-                9.Arznomalar
+                3.Employee
+                4.Guest
+                5.Booking
+                6.OutCome
+                7.Tozalangan
+                8.Arznomalar
                 """);
     }
 }
