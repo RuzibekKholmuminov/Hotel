@@ -96,4 +96,30 @@ public class AdminService {
             System.out.println(guests1);
         }
     }
+
+    public void addBooking(Booking booking) {
+        repository.addBooking(booking);
+        System.out.println("ADDED SUCCESSFULLY");
+    }
+
+    public void bookingList() {
+        List<Booking> bookingList = repository.bookingList();
+        for (Booking booking : bookingList) {
+            System.out.println(booking);
+        }
+    }
+
+    public void listByRoomId(Integer roomId) {
+        List<Booking> bookingList = repository.listByRoomId(roomId);
+        for (Booking booking : bookingList) {
+            System.out.println(booking);
+        }
+    }
+
+    public void listByGuestId(Integer guestId) {
+        List<Booking> bookingList = repository.listByGuestId(guestId);
+        for (Booking booking : bookingList) {
+            System.out.println(booking);
+        }
+    }
 }

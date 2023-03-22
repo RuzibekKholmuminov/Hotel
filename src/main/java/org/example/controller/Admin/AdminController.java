@@ -19,10 +19,79 @@ public class AdminController {
                 case 2 -> convenient();
                 case 3 -> employee();
                 case 4 -> guest();
+                case 5 -> booking();
                 case 0 -> game = false;
                 default -> System.out.println("Mazgi nima bu");
             }
         }
+    }
+
+    private void booking() {
+        boolean game = true;
+        while (game) {
+            bookingMenu();
+            int action = ScannerUtil.getAction();
+            switch (action) {
+                case 1 -> makeBooking();
+                case 2 -> bookingList();
+                case 3 -> bookingListByRoomId();
+                case 4 -> bookingListByGuestId();
+                case 0 -> game = false;
+                default -> System.out.println("Mazgi nima bu");
+            }
+        }
+    }
+
+    private void bookingListByGuestId() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter guestId: ");
+        Integer guestId = scanner.nextInt();
+        adminService.listByGuestId(guestId);
+    }
+
+    private void bookingMenu() {
+        System.out.println("""
+                            ** BOOKING MENU **
+                1.Make booking
+                2.List
+                3.List by roomId
+                4.List by guestId
+                """);
+    }
+
+    private void bookingListByRoomId() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter roomId: ");
+        Integer roomId = scanner.nextInt();
+        adminService.listByRoomId(roomId);
+    }
+
+    private void bookingList() {
+        adminService.bookingList();
+    }
+
+    private void makeBooking() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter guest id: ");
+        Integer guestId = scanner.nextInt();
+        System.out.print("Enter room id: ");
+        Integer roomId = scanner.nextInt();
+        System.out.print("Enter booking date: ");
+        LocalDateTime makingDate = LocalDateTime.parse(scanner.next());
+        System.out.print("Enter booking day: ");
+        String makingDay = scanner.next();
+
+        Guests guests = new Guests();
+        guests.setId(guestId);
+        Room room = new Room();
+        room.setId(roomId);
+
+        Booking booking = new Booking();
+        booking.setGuest_id(guests);
+        booking.setRoom_id(room);
+        booking.setDate(makingDate);
+        booking.setDate_count(makingDay);
+        adminService.addBooking(booking);
     }
 
     private void guest() {

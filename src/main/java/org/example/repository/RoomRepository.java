@@ -219,4 +219,63 @@ public class RoomRepository {
         factory.close();
         return convenientList;
     }
+
+    public void addBooking(Booking booking) {
+        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(booking);
+        transaction.commit();
+
+        session.close();
+        factory.close();
+    }
+
+    public List<Booking> bookingList() {
+        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        List<Booking> convenientList = session.createQuery("from Booking ", Booking.class).getResultList();
+        transaction.commit();
+
+        session.close();
+        factory.close();
+        return convenientList;
+    }
+
+    public List<Booking> listByRoomId(Integer roomId) {
+        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        List<Booking> bookingList = session.createQuery("delete from  Booking where room_id = " + roomId + "", Booking.class).getResultList();
+        transaction.commit();
+
+        session.close();
+        factory.close();
+        return bookingList;
+    }
+
+    public List<Booking> listByGuestId(Integer guestId) {
+        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        List<Booking> bookingList = session.createQuery("delete from  Booking where guest_1_id = " + guestId + "", Booking.class).getResultList();
+        transaction.commit();
+
+        session.close();
+        factory.close();
+        return bookingList;
+    }
 }

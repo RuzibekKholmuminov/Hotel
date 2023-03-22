@@ -2,6 +2,7 @@ package org.example.dto;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "booking")
@@ -16,7 +17,7 @@ public class Booking {
     @JoinColumn(name = "room_id")
     private Room room_id;
     @Column(name = "date")
-    private LocalDate date;
+    private LocalDateTime date;
     @Column(name = "date_count")
     private String date_count;
 
@@ -44,11 +45,11 @@ public class Booking {
         this.room_id = room_id;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
