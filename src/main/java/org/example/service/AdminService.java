@@ -122,4 +122,14 @@ public class AdminService {
             System.out.println(booking);
         }
     }
+
+    public void addComplain(Complain complain) {
+        repository.addComplain(complain);
+        System.out.println("ADDED SUCCESSFULLY");
+    }
+
+    public void addTozalangan(ClearedRoom clearedRoom) {
+        repository.addTozalangan(clearedRoom);
+        System.out.println("ADDED SUCCESSFULLY");
+    }
 }

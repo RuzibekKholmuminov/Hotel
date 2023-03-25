@@ -36,4 +36,13 @@ public class EmployeeType {
     public void setType(String type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "EmployeeType{" +
+                "id=" + id +
+                ", employee_id=" + employee_id +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

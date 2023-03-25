@@ -1,6 +1,7 @@
 package org.example.dto;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,9 +19,9 @@ public class Guests {
     @Column(name = "passportNumber")
     private String pNumber;
     @Column(name = "pGivenDate")
-    private LocalDateTime pGivenDate;
+    private LocalDate pGivenDate;
     @Column(name = "pExpiredDate")
-    private LocalDateTime pExpiredDate;
+    private LocalDate pExpiredDate;
     @Column(name = "pGivenBy")
     private String pGivenBy;
 
@@ -32,19 +33,19 @@ public class Guests {
         this.pNumber = pNumber;
     }
 
-    public LocalDateTime getpGivenDate() {
+    public LocalDate getpGivenDate() {
         return pGivenDate;
     }
 
-    public void setpGivenDate(LocalDateTime pGivenDate) {
+    public void setpGivenDate(LocalDate pGivenDate) {
         this.pGivenDate = pGivenDate;
     }
 
-    public LocalDateTime getpExpiredDate() {
+    public LocalDate getpExpiredDate() {
         return pExpiredDate;
     }
 
-    public void setpExpiredDate(LocalDateTime pExpiredDate) {
+    public void setpExpiredDate(LocalDate pExpiredDate) {
         this.pExpiredDate = pExpiredDate;
     }
 
@@ -86,5 +87,19 @@ public class Guests {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "Guests{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", phone='" + phone + '\'' +
+                ", pNumber='" + pNumber + '\'' +
+                ", pGivenDate=" + pGivenDate +
+                ", pExpiredDate=" + pExpiredDate +
+                ", pGivenBy='" + pGivenBy + '\'' +
+                '}';
     }
 }

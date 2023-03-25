@@ -37,4 +37,13 @@ public class Complain {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Complain{" +
+                "id=" + id +
+                ", guest_1_id=" + guest_1_id +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

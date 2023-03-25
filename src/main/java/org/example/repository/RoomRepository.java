@@ -256,7 +256,7 @@ public class RoomRepository {
 
         Session session = factory.openSession();
         Transaction transaction = session.beginTransaction();
-        List<Booking> bookingList = session.createQuery("delete from  Booking where room_id = " + roomId + "", Booking.class).getResultList();
+        List<Booking> bookingList = session.createQuery("from  Booking where room_id = " + roomId + "", Booking.class).getResultList();
         transaction.commit();
 
         session.close();
@@ -271,11 +271,39 @@ public class RoomRepository {
 
         Session session = factory.openSession();
         Transaction transaction = session.beginTransaction();
-        List<Booking> bookingList = session.createQuery("delete from  Booking where guest_1_id = " + guestId + "", Booking.class).getResultList();
+        List<Booking> bookingList = session.createQuery("from  Booking where guest_1_id = " + guestId + "", Booking.class).getResultList();
         transaction.commit();
 
         session.close();
         factory.close();
         return bookingList;
+    }
+
+    public void addComplain(Complain complain) {
+        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(complain);
+        transaction.commit();
+
+        session.close();
+        factory.close();
+    }
+
+    public void addTozalangan(ClearedRoom clearedRoom) {
+        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(clearedRoom);
+        transaction.commit();
+
+        session.close();
+        factory.close();
     }
 }

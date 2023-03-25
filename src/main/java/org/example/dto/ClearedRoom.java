@@ -50,4 +50,14 @@ public class ClearedRoom {
     public void setRoom_id(Room room_id) {
         this.room_id = room_id;
     }
+
+    @Override
+    public String toString() {
+        return "ClearedRoom{" +
+                "id=" + id +
+                ", employee_id=" + employee_id +
+                ", time=" + time +
+                ", room_id=" + room_id +
+                '}';
+    }
 }

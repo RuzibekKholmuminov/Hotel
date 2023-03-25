@@ -1,6 +1,9 @@
 package org.example.controller;
 
+import org.example.dto.Complain;
 import org.example.dto.Employee;
+import org.example.dto.Guests;
+import org.example.service.AdminService;
 import org.example.service.EmployeeService;
 import org.example.util.ScannerUtil;
 
@@ -29,7 +32,20 @@ public class AuthController {
     }
 
     private void complain() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter complain: ");
+        String complain = scanner.next();
+        System.out.print("Enter yourId: ");
+        Integer id = scanner.nextInt();
 
+        Guests guests = new Guests();
+        guests.setId(id);
+
+        Complain complain1 = new Complain();
+        complain1.setStatus(complain);
+        complain1.setGuest_id(guests);
+        AdminService adminService = new AdminService();
+        adminService.addComplain(complain1);
     }
 
 

@@ -78,4 +78,17 @@ public class GuestPassport {
     public void setPlace(String place) {
         this.place = place;
     }
+
+    @Override
+    public String toString() {
+        return "GuestPassport{" +
+                "id=" + id +
+                ", guest_1_id=" + guest_1_id +
+                ", number='" + number + '\'' +
+                ", startDate=" + startDate +
+                ", validity_period='" + validity_period + '\'' +
+                ", submitter_name='" + submitter_name + '\'' +
+                ", place='" + place + '\'' +
+                '}';
+    }
 }

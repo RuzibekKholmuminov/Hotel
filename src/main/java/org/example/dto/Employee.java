@@ -111,4 +111,18 @@ public class Employee {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", phone='" + phone + '\'' +
+                ", psw='" + psw + '\'' +
+                ", date=" + date +
+                ", status='" + status + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

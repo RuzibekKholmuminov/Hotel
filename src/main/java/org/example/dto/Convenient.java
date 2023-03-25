@@ -26,4 +26,12 @@ public class Convenient {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Convenient{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

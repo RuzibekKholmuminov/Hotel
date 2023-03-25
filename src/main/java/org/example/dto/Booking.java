@@ -17,7 +17,7 @@ public class Booking {
     @JoinColumn(name = "room_id")
     private Room room_id;
     @Column(name = "date")
-    private LocalDateTime date;
+    private LocalDate date;
     @Column(name = "date_count")
     private String date_count;
 
@@ -45,11 +45,11 @@ public class Booking {
         this.room_id = room_id;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -59,5 +59,16 @@ public class Booking {
 
     public void setDate_count(String date_count) {
         this.date_count = date_count;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id=" + id +
+                ", guest_1_id=" + guest_1_id +
+                ", room_id=" + room_id +
+                ", date=" + date +
+                ", date_count='" + date_count + '\'' +
+                '}';
     }
 }

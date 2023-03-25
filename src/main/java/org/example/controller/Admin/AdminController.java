@@ -4,6 +4,7 @@ import org.example.dto.*;
 import org.example.service.AdminService;
 import org.example.util.ScannerUtil;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
@@ -20,10 +21,30 @@ public class AdminController {
                 case 3 -> employee();
                 case 4 -> guest();
                 case 5 -> booking();
+                case 6 -> tozalangan();
                 case 0 -> game = false;
                 default -> System.out.println("Mazgi nima bu");
             }
         }
+    }
+
+    private void tozalangan() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter yourId: ");
+        Integer employeeId = scanner.nextInt();
+        System.out.print("Enter roomId: ");
+        Integer roomId = scanner.nextInt();
+
+        Employee employee = new Employee();
+        employee.setId(employeeId);
+        Room room = new Room();
+        room.setId(roomId);
+
+        ClearedRoom clearedRoom = new ClearedRoom();
+        clearedRoom.setEmployee_id(employee);
+        clearedRoom.setTime(LocalDateTime.now());
+        clearedRoom.setRoom_id(room);
+        adminService.addTozalangan(clearedRoom);
     }
 
     private void booking() {
@@ -77,7 +98,7 @@ public class AdminController {
         System.out.print("Enter room id: ");
         Integer roomId = scanner.nextInt();
         System.out.print("Enter booking date: ");
-        LocalDateTime makingDate = LocalDateTime.parse(scanner.next());
+        LocalDate makingDate = LocalDate.parse(scanner.next());
         System.out.print("Enter booking day: ");
         String makingDay = scanner.next();
 
@@ -123,9 +144,9 @@ public class AdminController {
         System.out.print("Enter Passport Number: ");
         String pNumber = scanner.next();
         System.out.print("Enter Passport given date: ");
-        LocalDateTime pGivenDate = LocalDateTime.parse(scanner.next());
+        LocalDate pGivenDate = LocalDate.parse((scanner.next()));
         System.out.print("Enter Passport expired date: ");
-        LocalDateTime pExpiredDate = LocalDateTime.parse(scanner.next());
+        LocalDate pExpiredDate = LocalDate.parse((scanner.next()));
         System.out.print("Enter Passport given by: ");
         String givenBy = scanner.next();
 
